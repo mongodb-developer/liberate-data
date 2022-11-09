@@ -1,0 +1,35 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "categoryId": {
+            "bsonType": "int"
+        },
+        "discontinued": {
+            "bsonType": "int"
+        },
+        "productName": {
+            "bsonType": "string"
+        },
+        "quantityPerUnit": {
+            "bsonType": "string"
+        },
+        "reorderLevel": {
+            "bsonType": "int"
+        },
+        "supplierId": {
+            "bsonType": "int"
+        },
+        "unitPrice": {
+            "bsonType": "double"
+        },
+        "unitsInStock": {
+            "bsonType": "int"
+        },
+        "unitsOnOrder": {
+            "bsonType": "int"
+        }
+    },
+    "title": "product"
+}

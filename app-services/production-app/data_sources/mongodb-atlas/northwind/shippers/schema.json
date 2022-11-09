@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "companyName": {
+            "bsonType": "string"
+        },
+        "phone": {
+            "bsonType": "string"
+        }
+    },
+    "title": "shipper"
+}

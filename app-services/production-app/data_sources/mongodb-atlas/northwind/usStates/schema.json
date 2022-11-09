@@ -1,0 +1,17 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "stateAbbr": {
+            "bsonType": "string"
+        },
+        "stateName": {
+            "bsonType": "string"
+        },
+        "stateRegion": {
+            "bsonType": "string"
+        }
+    },
+    "title": "usState"
+}

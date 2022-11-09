@@ -1,0 +1,14 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "string"
+        },
+        "regionId": {
+            "bsonType": "int"
+        },
+        "territoryDescription": {
+            "bsonType": "string"
+        }
+    },
+    "title": "territory"
+}

@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "regionDescription": {
+            "bsonType": "string"
+        }
+    },
+    "title": "region"
+}

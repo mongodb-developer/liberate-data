@@ -1,0 +1,16 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "object",
+            "properties": {
+                "employeeId": {
+                    "bsonType": "int"
+                },
+                "territoryId": {
+                    "bsonType": "string"
+                }
+            }
+        }
+    },
+    "title": "employeeTerritory"
+}
