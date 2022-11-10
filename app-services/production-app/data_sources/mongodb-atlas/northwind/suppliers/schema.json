@@ -1,0 +1,41 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "address": {
+            "bsonType": "string"
+        },
+        "city": {
+            "bsonType": "string"
+        },
+        "companyName": {
+            "bsonType": "string"
+        },
+        "contactName": {
+            "bsonType": "string"
+        },
+        "contactTitle": {
+            "bsonType": "string"
+        },
+        "country": {
+            "bsonType": "string"
+        },
+        "fax": {
+            "bsonType": "string"
+        },
+        "homepage": {
+            "bsonType": "string"
+        },
+        "phone": {
+            "bsonType": "string"
+        },
+        "postalCode": {
+            "bsonType": "string"
+        },
+        "region": {
+            "bsonType": "string"
+        }
+    },
+    "title": "supplier"
+}

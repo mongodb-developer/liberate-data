@@ -1,0 +1,60 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "address": {
+            "bsonType": "string"
+        },
+        "birthDate": {
+            "bsonType": "date"
+        },
+        "city": {
+            "bsonType": "string"
+        },
+        "country": {
+            "bsonType": "string"
+        },
+        "extension": {
+            "bsonType": "string"
+        },
+        "firstName": {
+            "bsonType": "string"
+        },
+        "hireDate": {
+            "bsonType": "date"
+        },
+        "homePhone": {
+            "bsonType": "string"
+        },
+        "lastName": {
+            "bsonType": "string"
+        },
+        "notes": {
+            "bsonType": "string"
+        },
+        "photo": {
+            "bsonType": "object",
+            "properties": {}
+        },
+        "photoPath": {
+            "bsonType": "string"
+        },
+        "postalCode": {
+            "bsonType": "string"
+        },
+        "region": {
+            "bsonType": "string"
+        },
+        "reportsTo": {
+            "bsonType": "int"
+        },
+        "title": {
+            "bsonType": "string"
+        },
+        "titleOfCourtesy": {
+            "bsonType": "string"
+        }
+    },
+    "title": "employee"
+}

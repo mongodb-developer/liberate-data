@@ -1,0 +1,145 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "customer": {
+            "bsonType": "object",
+            "properties": {
+                "companyName": {
+                    "bsonType": "string"
+                },
+                "contactName": {
+                    "bsonType": "string"
+                },
+                "contactTitle": {
+                    "bsonType": "string"
+                },
+                "customerId": {
+                    "bsonType": "string"
+                },
+                "phone": {
+                    "bsonType": "string"
+                }
+            },
+            "required": [],
+            "title": "order_customer"
+        },
+        "customerId": {
+            "bsonType": "string"
+        },
+        "employee": {
+            "bsonType": "object",
+            "properties": {
+                "employeeId": {
+                    "bsonType": "long"
+                },
+                "firstName": {
+                    "bsonType": "string"
+                },
+                "lastName": {
+                    "bsonType": "string"
+                },
+                "notes": {
+                    "bsonType": "string"
+                },
+                "title": {
+                    "bsonType": "string"
+                }
+            },
+            "required": [],
+            "title": "order_employee"
+        },
+        "employeeId": {
+            "bsonType": "long"
+        },
+        "freight": {
+            "bsonType": "double"
+        },
+        "orderDate": {
+            "bsonType": "date"
+        },
+        "orderDetails": {
+            "bsonType": "array",
+            "items": {
+                "bsonType": "object",
+                "properties": {
+                    "discount": {
+                        "bsonType": "double"
+                    },
+                    "product": {
+                        "bsonType": "object",
+                        "properties": {
+                            "categoryId": {
+                                "bsonType": "long"
+                            },
+                            "productId": {
+                                "bsonType": "long"
+                            },
+                            "productName": {
+                                "bsonType": "string"
+                            },
+                            "quantityPerUnit": {
+                                "bsonType": "string"
+                            }
+                        },
+                        "required": [],
+                        "title": "order_orderDetails_product"
+                    },
+                    "productId": {
+                        "bsonType": "long"
+                    },
+                    "quantity": {
+                        "bsonType": "long"
+                    },
+                    "unitPrice": {
+                        "bsonType": "double"
+                    }
+                }
+            }
+        },
+        "requiredDate": {
+            "bsonType": "date"
+        },
+        "shipAddress": {
+            "bsonType": "string"
+        },
+        "shipCity": {
+            "bsonType": "string"
+        },
+        "shipCountry": {
+            "bsonType": "string"
+        },
+        "shipName": {
+            "bsonType": "string"
+        },
+        "shipPostalCode": {
+            "bsonType": "string"
+        },
+        "shipRegion": {
+            "bsonType": "string"
+        },
+        "shipVia": {
+            "bsonType": "long"
+        },
+        "shippedDate": {
+            "bsonType": "date"
+        }
+    },
+    "required": [
+        "_id",
+        "customerId",
+        "employeeId",
+        "freight",
+        "orderDate",
+        "shipAddress",
+        "shipCity",
+        "shipCountry",
+        "shipName",
+        "shipPostalCode",
+        "shipRegion",
+        "shipVia",
+        "shippedDate"
+    ],
+    "title": "order"
+}

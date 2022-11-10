@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "889d66f1-da26-4bb2-9deb-0c607a076c69",
+		"name": "Northwind GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1711440"
+	},
+	"item": [
+		{
+			"name": "Auth: Get Bearer & Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"console.log(\"jsonData\" + JSON.stringify(jsonData));",
+							"",
+							"let access_token = jsonData.access_token;",
+							"let refresh_token = jsonData.refresh_token;",
+							"console.log(access_token);",
+							"console.log(refresh_token);",
+							"",
+							"pm.collectionVariables.set('access_token', access_token);",
+							"pm.collectionVariables.set('refresh_token', refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"{{api_key}}\"\n}"
+				},
+				"url": {
+					"raw": "https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/{{atlas_app_id}}/auth/providers/api-key/login",
+					"protocol": "https",
+					"host": [
+						"us-west-2",
+						"aws",
+						"realm",
+						"mongodb",
+						"com"
+					],
+					"path": [
+						"api",
+						"client",
+						"v2.0",
+						"app",
+						"{{atlas_app_id}}",
+						"auth",
+						"providers",
+						"api-key",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query: Orders shipped to London",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  orders(query: {shipCity:\"London\"}) {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        customerId\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        employeeId\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        quantity\n        unitPrice\n        product {\n            productId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query: Orders shipped to London by Employee 5",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ordersByEmployee5($criteria: OrderQueryInput!) {\n  orders(query: $criteria) {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        customerId\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        employeeId\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        quantity\n        unitPrice\n        product {\n            productId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"variables": "{\n  \"criteria\": {\n    \"shipCity\":\"London\",\n    \"employee\" : {\n       \"employeeId\": 5\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query: Orders shipped to London by Employee 1 to Customer EASTC",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query ordersByEmployee5($criteria: OrderQueryInput!) {\n  orders(query: $criteria) {\n     _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        customerId\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        employeeId\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        quantity\n        unitPrice\n        product {\n            productId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"variables": "{\n  \"criteria\": {\n    \"shipCity\":\"London\",\n    \"employee\" : {\n       \"employeeId\": 1\n    },\n    \"customer\" : {\n        \"customerId\": \"EASTC\"\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search: Orders by search string",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  searchOrders(input:\"clm chwdr\") {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        productId\n        quantity\n        unitPrice\n        product {\n            categoryId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "api_key",
+			"value": "<<REPLACE API KEY HERE>>",
+			"type": "string"
+		},
+		{
+			"key": "atlas_app_id",
+			"value": "production-app-upqth",
+			"type": "string"
+		},
+		{
+			"key": "graphql_api",
+			"value": "https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/production-app-upqth/graphql",
+			"type": "string"
+		}
+	]
+}

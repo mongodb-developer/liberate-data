@@ -1,0 +1,1 @@
+"/Applications/pgAdmin 4.app/Contents/SharedSupport/pg_restore" --host "localhost" --port "5432" --username "demo" --role "postgres" --dbname "postgres" --section=data --create --verbose --schema "northwind2" "/git/northwind-instant-modernization/relmig/postgres/northwind.sql"

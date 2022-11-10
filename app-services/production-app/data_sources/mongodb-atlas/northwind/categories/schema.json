@@ -1,0 +1,18 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "int"
+        },
+        "categoryName": {
+            "bsonType": "string"
+        },
+        "description": {
+            "bsonType": "string"
+        },
+        "picture": {
+            "bsonType": "object",
+            "properties": {}
+        }
+    },
+    "title": "category"
+}
