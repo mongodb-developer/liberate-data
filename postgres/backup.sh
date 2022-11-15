@@ -1,1 +1,1 @@
-/Applications/pgAdmin 4.app/Contents/SharedSupport/pg_dump --file "/git/northwind-instant-modernization/relmig/postgres/northwind.sql" --host "localhost" --port "5432" --username "postgres" --no-password --verbose --role "postgres" --format=t --blobs --section=data --encoding "UTF8" --schema "northwind" "postgres"
+"/Applications/pgAdmin 4.app/Contents/SharedSupport/pg_dump" --file ./northwind.sql --host "localhost" --port "5432" --username "demo" --verbose --role "postgres" --format=p --blobs --create --schema "northwind" postgres
