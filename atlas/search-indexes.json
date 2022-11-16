@@ -1,0 +1,17 @@
+{
+    "name": "default",
+    "collectionName": "orders",
+    "database": "northwind",
+    "mappings": {
+        "dynamic": true
+    }
+}
+
+{
+    "name": "default",
+    "collectionName": "categories",
+    "database": "northwind",
+    "mappings": {
+        "dynamic": true
+    }
+}
