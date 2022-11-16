@@ -5,7 +5,7 @@ Reduce the time it takes to modernize your applications by freeing the data trap
 ![Demo Architecture](./demo-components.jpg)
 
 Steps
-###### PostgreSQL
+#### PostgreSQL
 1. Restore the `northwind` PostgreSQL database using the `restore.sh` script into your postgres host of choice. The instructions assume localhost running on the default port of 5432 with a user named "demo".
 2. Verify that the following tables with all data are correctly imported by running this script:
 
@@ -42,26 +42,25 @@ output
 ```
 
 
-###### MongoDB Atlas
-2. Sign up for Atlas and create an Atlas Project named `Liberate Data`.
-3. Create an M10+ Atlas cluster named `production`
-4. Create a user named `demo` with `r`eadWriteAnyDatabase` permissions
-5. Add `0.0.0.0` to your Atlas IP Access List. NOTE: This is not recommneded for production or professional work environments.
-###### MongoDB Relational Migrator
-6. Install MongoDB Relational Migrator
-7. Import the project `liberate-data.relmig`.
-8. Inspect the Relational and MDB diagrams. 
-9. The destination Orders collection shoud look like this:
+#### MongoDB Atlas
+2. Sign up for Atlas and create an Atlas Project named `Liberate Data` with an an M10 Atlas cluster named `production`
+3. Create a user named `demo` with `r`eadWriteAnyDatabase` permissions
+4. Add `0.0.0.0` to your Atlas IP Access List. NOTE: This is not recommneded for production or professional work environments.
+#### MongoDB Relational Migrator
+5. Install MongoDB Relational Migrator
+6. Import the project `liberate-data.relmig`.
+7. Inspect the Relational and MDB diagrams. 
+8. The destination Orders collection shoud look like this:
 ![Orders collection mapping](./orders_mappings.jpg)
-10. Perform the Data Migration entering your Postgres and Atlas credentials. 
-11. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
-###### MongoDB Atlas Search
-12. Create a default search indexe with dynamic mappings on the `orders` and `categories` collections. See search-indexes.json for their definition
-###### MongoDB Atlas App Services
-13. Import the Atlas Application `production-app` into the Atlas project.
-14. <b>Linked Data Sources</b>: Inspect that the `production` cluster is linked as the data source
-15. <b>Rules</b>: The `orders` collection should have the ` readAndWriteAll` role. All other collections should have the `readAll` role. 
-16. <b>Schema</b>: Ensure the schema for all collections is defined. The schema for the `orders` collection should define required fields as below in addition to their bson types:
+9. Perform the Data Migration entering your Postgres and Atlas credentials. 
+10. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
+#### MongoDB Atlas Search
+11. Create a default search indexe with dynamic mappings on the `orders` and `categories` collections. See search-indexes.json for their definition
+#### MongoDB Atlas App Services
+12. Import the Atlas Application `production-app` into the Atlas project.
+13. <b>Linked Data Sources</b>: Inspect that the `production` cluster is linked as the data source
+14. <b>Rules</b>: The `orders` collection should have the ` readAndWriteAll` role. All other collections should have the `readAll` role. 
+15. <b>Schema</b>: Ensure the schema for all collections is defined. The schema for the `orders` collection should define required fields as below in addition to their bson types:
 ```
 {
   "title": "order",
@@ -83,26 +82,26 @@ output
   ...
 }
 ```
-17. <b>Authentication</b>: 2 authentication providers should be enabled: `email/password` and `API Keys`. An API key named demo should be (re)created by you.
-18. <b>Device Sync</b>: Flexible device sync should be enabled, set to the linked atlas cluster and the northwind database.
-19. <b>GraphQL</b>: All entity types should be defined along with a custom resolver named `searchOrders` linked to an Atlas Function named `funcSearchOrders`.
+16. <b>Authentication</b>: 2 authentication providers should be enabled: `email/password` and `API Keys`. An API key named demo should be (re)created by you.
+17. <b>Device Sync</b>: Flexible device sync should be enabled, set to the linked atlas cluster and the northwind database.
+18. <b>GraphQL</b>: All entity types should be defined along with a custom resolver named `searchOrders` linked to an Atlas Function named `funcSearchOrders`.
 
-###### Postman
-20. Install Postman and import the `liberate-data - GraphQL` postman collection.
-21. In the collection variables, enter the `api_key` and `atlas_app_id` values. Obtain the GraphQL API endpoint from the GraphQL section and set in the `graphql_api` variable.
-22. Execute the 1st POST operation `Auth: Get Bearer & Access Token` to authenticate and obtain a bearer and access token.
-23. Execute all other operations in any order. Feel free to change query values.
-23. The `Search: Orders by search string` operation uses the custom resolver which in turn executes an Atlas Search pipeline. This pipeline is implemented in the `funcSearchOrders` function. The pipeline performs a fuzzy text search on the `orders` collection, plus a join (`$lookup`) to the `categories` collection performing another search.
+#### Postman
+19. Install Postman and import the `liberate-data - GraphQL` postman collection.
+20. In the collection variables, enter the `api_key` and `atlas_app_id` values. Obtain the GraphQL API endpoint from the GraphQL section in Atlas App Services and set in the `graphql_api` variable.
+![Postman variable](./postman-variables.jpg)
+21. Execute the 1st POST operation `Auth: Get Bearer & Access Token` to authenticate and obtain tokens.
+22. Execute all other operations in any order. Feel free to change query values.
+23. The `Search: Orders by search string` operation uses a custom resolver which in turn executes an Atlas Search pipeline. This pipeline is implemented in the `funcSearchOrders` function and performs a fuzzy text search on the `orders` collection, plus a union (`$unionWith`) and join (`$lookup`) to the `categories` collection, thus performing a text search on orders and categories.
 
-###### Swift mobile app with Realm SDK
-`This demo uses Swift and the XCode app simulator available on OSX.`
-24. Install XCode and open the swift app under the `app-swift` folder. 
-25. Open the Realm object and replace the `appId` and `appUrl`. Compile and run.
+#### Swift mobile app with Realm SDK
+24. Install XCode with the Swift SDK, and open the swift app under the `app-swift` folder. 
+25. Open the Realm object and replace the `appId` and  `appUrl`. Compile and run.
 ![Swift Realm config](./swift-app-config.jpg)
-26. Register a new user using an email and password. 
+26. In the mobile app, register with a new user using an email and password. 
 27. Browse orders. For the purpose of this demo, all users have access to all orders.
 
-###### Atlas Device Sync
+#### Atlas Device Sync
 28. Modify an order using the mobile app.
-29. Open the Order document in Atlas or Compass and notice the changes. Now modify the same order in Atlas or Compass and the changes are reflected on the mobile app. Atlas Device Sync works.
+20. Open the same Order document in Atlas or Compass and notice the changes. Now modify the same order and the changes will be reflected on the mobile app. Atlas Device Sync works.
 30. Finally, run the MUTATION GraphQL operation in postman. Change the Order ID and any fields in the order body. The changes should reflect in the mobile app.
