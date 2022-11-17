@@ -2,7 +2,7 @@
 
 Reduce the time it takes to modernize your applications by freeing the data trapped in your relational database and migrating to the next-gen fully transactional DB of MongoDB Atlas. Powering it with advanced lucene-based search, enable API consumption via fully-managed GraphQL, and expose to mobile and edge consumers via the Realm mobile DB and SDK’s. 
 
-![Demo Architecture](./demo-components.jpg)
+![Demo Architecture](./img/demo-components.jpg)
 
 Steps
 #### PostgreSQL
@@ -51,7 +51,7 @@ output
 6. Import the project [liberate-data.relmig](./relational-migrator/liberate-data.relmig).
 7. Inspect the Relational and MDB diagrams. Notice how the `Orders` collection uses the [Subset](https://www.mongodb.com/blog/post/building-with-patterns-the-subset-pattern) schema design pattern to store most frequently accessed data together.
 8. The destination Orders collection shoud look like this:
-![Orders collection mapping](./orders_mappings.jpg)
+![Orders collection mapping](./img/orders_mappings.jpg)
 9. Perform the data migration by entering your Postgres and Atlas credentials. 
 10. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 #### MongoDB Atlas Search
@@ -89,7 +89,7 @@ output
 #### Postman
 19. Install [Postman](https://www.postman.com/downloads/) and import the [liberate-data - GraphQL](./postman/liberate-data%20-%20GraphQL.postman_collection.json) postman collection.
 20. In the collection variables, enter the `api_key` and `atlas_app_id` values. Obtain the GraphQL API endpoint from the GraphQL section in Atlas App Services and set in the `graphql_api` variable.
-![Postman variable](./postman-variables.jpg)
+![Postman variable](./img/postman-variables.jpg)
 21. Execute the 1st POST operation `Auth: Get Bearer & Access Token` to authenticate and obtain tokens.
 22. Execute all other operations in any order. Feel free to change query values.
 23. The `Search: Orders by search string` operation uses a custom resolver which in turn executes an Atlas Search pipeline. This pipeline is implemented in the `funcSearchOrders` function and performs a fuzzy text search on the `orders` collection, plus a union (`$unionWith`) and join (`$lookup`) to the `categories` collection, thus performing a text search on orders and categories.
@@ -97,7 +97,7 @@ output
 #### Swift mobile app with Realm SDK
 24. Install XCode with the [Swift](https://developer.apple.com/swift/) SDK, and open the swift app under the [app-swift](./app-swift/) folder. 
 25. Open the Realm object and replace the `appId` and  `appUrl`. Compile and run.
-![Swift Realm config](./swift-app-config.jpg)
+![Swift Realm config](./img/swift-app-config.jpg)
 26. In the mobile app, register with a new user via an email and password. 
 27. Browse orders. For the purpose of this demo, all users have access to all orders.
 
