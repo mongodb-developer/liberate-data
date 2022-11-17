@@ -17,13 +17,13 @@ struct OrderDetailsDetails: View {
     var body: some View {
         Form {
             Section(header: Text("Quantity")) {
-                TextField("Quantity", value: $quantity, format: .number)
+                TextField("Quantity", value: $anOrderDetails.quantity, format: .number)
             }
             Section(header: Text("Product ID")) {
-                TextField("Product ID", value: $productId, format: .number)
+                TextField("Product ID", value: $anOrderDetails.productId, format: .number)
             }
             Section(header: Text("Unit Price")) {
-                TextField("Unit Price", value: $unitPrice, format: .currency(code: "USD"))
+                TextField("Unit Price", value: $anOrderDetails.unitPrice, format: .currency(code: "USD"))
             }
             
             Section {
