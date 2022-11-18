@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "889d66f1-da26-4bb2-9deb-0c607a076c69",
+		"_postman_id": "65df41d5-d1bb-4692-9008-e54da7ef0c36",
 		"name": "Liberate data!",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1711440"
@@ -216,6 +216,43 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Mutation: Change a Sales Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  updateOneOrder(\n    query: { \n        _id: 10364\n    },\n    set: { \n        shipAddress: \"1633 Broadway 38th floor\",\n        shipCity: \" New York\",\n        shipCountry: \"USA\",\n        shipName: \"Atte: Valmik (aka Sig's doppelganger)\",\n        shipPostalCode: \"10019\",\n        shipRegion: \"NY\"\n    }) {\n    _id\n    orderDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -255,12 +292,12 @@
 		},
 		{
 			"key": "atlas_app_id",
-			"value": "production-app-upqth",
+			"value": "<<REPLACE APP ID HERE>>",
 			"type": "string"
 		},
 		{
 			"key": "graphql_api",
-			"value": "https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/production-app-upqth/graphql",
+			"value": "<<REPLACE GRAPHQL URL HERE>>",
 			"type": "string"
 		}
 	]
