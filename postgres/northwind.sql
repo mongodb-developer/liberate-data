@@ -68,7 +68,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE northwind.categories (
-    category_id smallint NOT NULL,
+    category_id bigint NOT NULL,
     category_name character varying(15) NOT NULL,
     description text,
     picture bytea
@@ -131,7 +131,7 @@ ALTER TABLE northwind.customers OWNER TO postgres;
 --
 
 CREATE TABLE northwind.employee_territories (
-    employee_id smallint NOT NULL,
+    employee_id bigint NOT NULL,
     territory_id character varying(20) NOT NULL
 );
 
@@ -144,7 +144,7 @@ ALTER TABLE northwind.employee_territories OWNER TO postgres;
 --
 
 CREATE TABLE northwind.employees (
-    employee_id smallint NOT NULL,
+    employee_id bigint NOT NULL,
     last_name character varying(20) NOT NULL,
     first_name character varying(10) NOT NULL,
     title character varying(30),
@@ -160,7 +160,7 @@ CREATE TABLE northwind.employees (
     extension character varying(4),
     photo bytea,
     notes text,
-    reports_to smallint,
+    reports_to bigint,
     photo_path character varying(255)
 );
 
@@ -173,10 +173,10 @@ ALTER TABLE northwind.employees OWNER TO postgres;
 --
 
 CREATE TABLE northwind.order_details (
-    order_id smallint NOT NULL,
-    product_id smallint NOT NULL,
+    order_id bigint NOT NULL,
+    product_id bigint NOT NULL,
     unit_price real NOT NULL,
-    quantity smallint NOT NULL,
+    quantity bigint NOT NULL,
     discount real NOT NULL
 );
 
@@ -189,13 +189,13 @@ ALTER TABLE northwind.order_details OWNER TO postgres;
 --
 
 CREATE TABLE northwind.orders (
-    order_id smallint NOT NULL,
+    order_id bigint NOT NULL,
     customer_id bpchar,
-    employee_id smallint,
+    employee_id bigint,
     order_date date,
     required_date date,
     shipped_date date,
-    ship_via smallint,
+    ship_via bigint,
     freight real,
     ship_name character varying(40),
     ship_address character varying(60),
@@ -214,15 +214,15 @@ ALTER TABLE northwind.orders OWNER TO postgres;
 --
 
 CREATE TABLE northwind.products (
-    product_id smallint NOT NULL,
+    product_id bigint NOT NULL,
     product_name character varying(40) NOT NULL,
-    supplier_id smallint,
-    category_id smallint,
+    supplier_id bigint,
+    category_id bigint,
     quantity_per_unit character varying(20),
     unit_price real,
-    units_in_stock smallint,
-    units_on_order smallint,
-    reorder_level smallint,
+    units_in_stock bigint,
+    units_on_order bigint,
+    reorder_level bigint,
     discontinued integer NOT NULL
 );
 
@@ -235,7 +235,7 @@ ALTER TABLE northwind.products OWNER TO postgres;
 --
 
 CREATE TABLE northwind.region (
-    region_id smallint NOT NULL,
+    region_id bigint NOT NULL,
     region_description bpchar NOT NULL
 );
 
@@ -248,7 +248,7 @@ ALTER TABLE northwind.region OWNER TO postgres;
 --
 
 CREATE TABLE northwind.shippers (
-    shipper_id smallint NOT NULL,
+    shipper_id bigint NOT NULL,
     company_name character varying(40) NOT NULL,
     phone character varying(24)
 );
@@ -262,7 +262,7 @@ ALTER TABLE northwind.shippers OWNER TO postgres;
 --
 
 CREATE TABLE northwind.suppliers (
-    supplier_id smallint NOT NULL,
+    supplier_id bigint NOT NULL,
     company_name character varying(40) NOT NULL,
     contact_name character varying(30),
     contact_title character varying(30),
@@ -287,7 +287,7 @@ ALTER TABLE northwind.suppliers OWNER TO postgres;
 CREATE TABLE northwind.territories (
     territory_id character varying(20) NOT NULL,
     territory_description bpchar NOT NULL,
-    region_id smallint NOT NULL
+    region_id bigint NOT NULL
 );
 
 
@@ -299,7 +299,7 @@ ALTER TABLE northwind.territories OWNER TO postgres;
 --
 
 CREATE TABLE northwind.us_states (
-    state_id smallint NOT NULL,
+    state_id bigint NOT NULL,
     state_name character varying(100),
     state_abbr character varying(2),
     state_region character varying(50)
