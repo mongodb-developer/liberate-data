@@ -70,7 +70,7 @@
 							},
 							"source": {
 								"name": "supplier_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -274,7 +274,7 @@
 							},
 							"source": {
 								"name": "employee_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -311,7 +311,7 @@
 							},
 							"source": {
 								"name": "shipper_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -361,7 +361,7 @@
 							},
 							"source": {
 								"name": "state_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -424,7 +424,7 @@
 							},
 							"source": {
 								"name": "product_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -450,7 +450,7 @@
 							},
 							"source": {
 								"name": "supplier_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -463,7 +463,7 @@
 							},
 							"source": {
 								"name": "category_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -502,7 +502,7 @@
 							},
 							"source": {
 								"name": "units_in_stock",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -515,7 +515,7 @@
 							},
 							"source": {
 								"name": "units_on_order",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -528,7 +528,7 @@
 							},
 							"source": {
 								"name": "reorder_level",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -591,7 +591,7 @@
 							},
 							"source": {
 								"name": "region_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						}
@@ -615,7 +615,7 @@
 							},
 							"source": {
 								"name": "order_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -641,7 +641,7 @@
 							},
 							"source": {
 								"name": "employee_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -693,7 +693,7 @@
 							},
 							"source": {
 								"name": "ship_via",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -808,7 +808,7 @@
 							},
 							"source": {
 								"name": "category_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1025,7 +1025,7 @@
 							},
 							"source": {
 								"name": "employee_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1233,7 +1233,7 @@
 							},
 							"source": {
 								"name": "reports_to",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1270,7 +1270,7 @@
 							},
 							"source": {
 								"name": "region_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1344,7 +1344,7 @@
 							},
 							"source": {
 								"name": "order_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1357,7 +1357,7 @@
 							},
 							"source": {
 								"name": "product_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1383,7 +1383,7 @@
 							},
 							"source": {
 								"name": "quantity",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1574,7 +1574,7 @@
 							},
 							"source": {
 								"name": "employee_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1782,7 +1782,7 @@
 							},
 							"source": {
 								"name": "reports_to",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1819,7 +1819,7 @@
 							},
 							"source": {
 								"name": "product_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": true
 							}
 						},
@@ -1845,7 +1845,7 @@
 							},
 							"source": {
 								"name": "supplier_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1858,7 +1858,7 @@
 							},
 							"source": {
 								"name": "category_id",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1897,7 +1897,7 @@
 							},
 							"source": {
 								"name": "units_in_stock",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1910,7 +1910,7 @@
 							},
 							"source": {
 								"name": "units_on_order",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -1923,7 +1923,7 @@
 							},
 							"source": {
 								"name": "reorder_level",
-								"databaseSpecificType": "int2",
+								"databaseSpecificType": "int8",
 								"isPrimaryKey": false
 							}
 						},
@@ -2702,7 +2702,7 @@
 										},
 										"supplier_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -2802,7 +2802,7 @@
 									"columns": {
 										"employee_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -2891,7 +2891,7 @@
 										},
 										"shipper_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -2962,7 +2962,7 @@
 										},
 										"state_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -2991,7 +2991,7 @@
 									"columns": {
 										"quantity": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 4,
 											"primaryKey": null,
@@ -3005,7 +3005,7 @@
 										},
 										"product_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 2,
 											"primaryKey": {
@@ -3059,7 +3059,7 @@
 										},
 										"order_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -3094,7 +3094,7 @@
 									"columns": {
 										"reorder_level": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 9,
 											"primaryKey": null,
@@ -3108,7 +3108,7 @@
 										},
 										"category_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 4,
 											"primaryKey": null,
@@ -3128,7 +3128,7 @@
 										},
 										"units_in_stock": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 7,
 											"primaryKey": null,
@@ -3142,7 +3142,7 @@
 										},
 										"units_on_order": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 8,
 											"primaryKey": null,
@@ -3156,7 +3156,7 @@
 										},
 										"product_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -3232,7 +3232,7 @@
 										},
 										"supplier_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 3,
 											"primaryKey": null,
@@ -3261,7 +3261,7 @@
 									"columns": {
 										"region_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 3,
 											"primaryKey": null,
@@ -3408,7 +3408,7 @@
 										},
 										"employee_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 3,
 											"primaryKey": null,
@@ -3442,7 +3442,7 @@
 										},
 										"ship_via": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 7,
 											"primaryKey": null,
@@ -3496,7 +3496,7 @@
 										},
 										"order_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -3567,7 +3567,7 @@
 										},
 										"category_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -3975,7 +3975,7 @@
 										},
 										"employee_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
@@ -3995,7 +3995,7 @@
 										},
 										"reports_to": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 17,
 											"primaryKey": null,
@@ -4080,7 +4080,7 @@
 										},
 										"region_id": {
 											"type": {
-												"databaseSpecificType": "int2"
+												"databaseSpecificType": "int8"
 											},
 											"ordinalPosition": 1,
 											"primaryKey": {
