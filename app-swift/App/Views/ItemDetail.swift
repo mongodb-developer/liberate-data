@@ -49,57 +49,7 @@ struct ItemDetail: View {
             NavigationLink(destination: OrderDetailsDetailsView(order: anOrder)) {
                 Text("Order Details")
             }
-            
-            Section {
-                            Button(action: {
-                                $anOrder.customerId.wrappedValue = customerId
-                                $anOrder.shipAddress.wrappedValue = shipAddress
-                                $anOrder.freight.wrappedValue = freight
-                                $anOrder.orderDate.wrappedValue = orderDate
-                                $anOrder.shipCity.wrappedValue = shipCity
-                                $anOrder.shipCountry.wrappedValue = shipCountry
-                                $anOrder.shipName.wrappedValue = shipName
-                                $anOrder.shipPostalCode.wrappedValue = shipPostalCode
-                                isInEditMode = false
-                                
-                            }) {HStack{
-                                Spacer()
-                                Text("Save")
-                                Spacer()
-                                
-                            }}
-                            Button(action: {
-                                // If the user cancels, we don't want to update the Realm object
-                                isInEditMode = true
-                                customerId = anOrder.customerId
-                                shipAddress = anOrder.shipAddress
-                                freight = anOrder.freight
-                                orderDate = anOrder.orderDate
-                                shipCity = anOrder.shipCity
-                                shipCountry = anOrder.shipCountry
-                                shipName = anOrder.shipName
-                                shipPostalCode = anOrder.shipPostalCode
-                            }) {
-                                HStack {
-                                    Spacer()
-                                    Text("Cancel")
-                                    Spacer()
-                                }
-                            }
-                        }
-            
-        }.onAppear(perform:{
-            isInEditMode = true
-            customerId = anOrder.customerId
-            shipAddress = anOrder.shipAddress
-            freight = anOrder.freight
-            orderDate = anOrder.orderDate
-            shipCity = anOrder.shipCity
-            shipCountry = anOrder.shipCountry
-            shipName = anOrder.shipName
-            shipPostalCode = anOrder.shipPostalCode
-            
-        })
+        }
         .navigationBarTitle("Order: \(anOrder._id)", displayMode: .inline)
     }
 }
