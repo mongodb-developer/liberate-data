@@ -21,9 +21,7 @@
                 "phone": {
                     "bsonType": "string"
                 }
-            },
-            "required": [],
-            "title": "order_customer"
+            }
         },
         "customerId": {
             "bsonType": "string"
@@ -32,7 +30,7 @@
             "bsonType": "object",
             "properties": {
                 "employeeId": {
-                    "bsonType": "long"
+                    "bsonType": "int"
                 },
                 "firstName": {
                     "bsonType": "string"
@@ -46,12 +44,10 @@
                 "title": {
                     "bsonType": "string"
                 }
-            },
-            "required": [],
-            "title": "order_employee"
+            }
         },
         "employeeId": {
-            "bsonType": "long"
+            "bsonType": "int"
         },
         "freight": {
             "bsonType": "double"
@@ -71,10 +67,10 @@
                         "bsonType": "object",
                         "properties": {
                             "categoryId": {
-                                "bsonType": "long"
+                                "bsonType": "int"
                             },
                             "productId": {
-                                "bsonType": "long"
+                                "bsonType": "int"
                             },
                             "productName": {
                                 "bsonType": "string"
@@ -82,15 +78,13 @@
                             "quantityPerUnit": {
                                 "bsonType": "string"
                             }
-                        },
-                        "required": [],
-                        "title": "order_orderDetails_product"
+                        }
                     },
                     "productId": {
-                        "bsonType": "long"
+                        "bsonType": "int"
                     },
                     "quantity": {
-                        "bsonType": "long"
+                        "bsonType": "int"
                     },
                     "unitPrice": {
                         "bsonType": "double"
@@ -120,7 +114,7 @@
             "bsonType": "string"
         },
         "shipVia": {
-            "bsonType": "long"
+            "bsonType": "int"
         },
         "shippedDate": {
             "bsonType": "date"
