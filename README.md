@@ -4,12 +4,32 @@ Reduce the time it takes to modernize your applications by freeing the data trap
 
 ![Demo Architecture](./img/demo-components.jpg)
 
-Steps
-#### PostgreSQL
-1. Restore the `northwind` PostgreSQL database using the `restore.sh` script into your postgres host of choice. The instructions assume localhost running on the default port of 5432 with a user named "demo".
-2. Verify that the following tables with all data are correctly imported by running this script:
+## Prerequisites
+* Docker Desktop 4+
 
-```
+
+## Steps
+### Clone & Change Directory
+1. ```shell
+   git clone https://github.com/mongodb-developer/liberate-data.git && cd liberate-data
+   ```
+
+### PostgreSQL
+1. Build the image 
+   2. ```shell
+       docker build -t liberate-data-postgres .
+      ```
+2. Run the container
+   3. ```shell
+         docker run -d --name my-postgres -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres
+      ```
+3. Exec into the container
+   4. ```shell
+       docker exec -it my-postgres psql -U postgres
+      ```
+4. Verify that the following tables with all data were correctly initialized during container startup by running this script:
+
+```postgresql
 WITH tbl AS
   (SELECT table_schema,
           TABLE_NAME
@@ -21,7 +41,9 @@ SELECT table_schema,
        (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
 FROM tbl
 ORDER BY rows_n DESC;
+```
 
+```shell
 output
 -----------------------------------------
 "table_schema","table_name","rows_n"
@@ -40,7 +62,10 @@ output
 "northwind","customer_customer_demo",0
 "northwind","customer_demographics",0
 ```
-
+5. Exit postgres container
+   6. ```shell
+       \q
+      ```
 
 #### MongoDB Atlas
 2. [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
