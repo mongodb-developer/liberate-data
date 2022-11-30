@@ -16,8 +16,8 @@ Reduce the time it takes to modernize your applications by freeing the data trap
 
 ### PostgreSQL
 1. Build the image 
-   2. ```shell
-       docker build -t liberate-data-postgres .
+   2. ```
+      docker build -t liberate-data-postgres .
       ```
 2. Run the container
    3. ```shell
