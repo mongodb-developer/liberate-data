@@ -43,24 +43,28 @@ FROM tbl
 ORDER BY rows_n DESC;
 ```
 
+output...
+
 ```shell
-output
------------------------------------------
-"table_schema","table_name","rows_n"
-"northwind","order_details",2155
-"northwind","orders",830
-"northwind","customers",91
-"northwind","products",77
-"northwind","territories",53
-"northwind","us_states",51
-"northwind","employee_territories",49
-"northwind","suppliers",29
-"northwind","employees",9
-"northwind","categories",8
-"northwind","shippers",6
-"northwind","region",4
-"northwind","customer_customer_demo",0
-"northwind","customer_demographics",0
+
+------------------------------------------------
+ table_schema |       table_name       | rows_n 
+--------------+------------------------+--------
+ northwind    | order_details          |   2155
+ northwind    | orders                 |    830
+ northwind    | customers              |     91
+ northwind    | products               |     77
+ northwind    | territories            |     53
+ northwind    | us_states              |     51
+ northwind    | employee_territories   |     49
+ northwind    | suppliers              |     29
+ northwind    | employees              |      9
+ northwind    | categories             |      8
+ northwind    | shippers               |      6
+ northwind    | region                 |      4
+ northwind    | customer_customer_demo |      0
+ northwind    | customer_demographics  |      0
+
 ```
 5. Exit postgres container
    6. ```shell
@@ -75,9 +79,10 @@ output
 5. Install [MongoDB Relational Migrator](https://www.mongodb.com/products/relational-migrator).
 6. Import the project [liberate-data.relmig](./relational-migrator/liberate-data.relmig).
 7. Inspect the Relational and MDB diagrams. Notice how the `Orders` collection uses the [Subset](https://www.mongodb.com/blog/post/building-with-patterns-the-subset-pattern) schema design pattern to store most frequently accessed data together.
-8. The destination Orders collection shoud look like this:
+8. The destination Orders collection should look like this:
 ![Orders collection mapping](./img/orders_mappings.jpg)
-9. Perform the data migration by entering your Postgres and Atlas credentials. 
+9. Perform the data migration by entering your Postgres and Atlas credentials.
+   10. Postgres Credentials: Username = `postgres` / Password = `password`
 10. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 #### MongoDB Atlas Search
 11. Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
