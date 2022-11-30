@@ -60,10 +60,7 @@ output...
  northwind    | customer_demographics  |      0
 
 ```
-5. Exit postgres container
-   6. ```shell
-       \q
-      ```
+5. Exit postgres container: `\q`
 
 #### MongoDB Atlas
 2. [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
