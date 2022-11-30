@@ -1,1 +1,1 @@
-pg_dump --file ./northwind.sql --host "localhost" --port "5432" --username "demo" --verbose --role "postgres" --format=p --blobs --create --schema "northwind" postgres
+"/Applications/pgAdmin 4.app/Contents/SharedSupport/pg_dump" --file ./northwind.sql --host "localhost" --port "5432" --username "demo" --verbose --role "postgres" --format=p --blobs --create --schema "northwind" postgres
