@@ -1,1 +1,0 @@
-"/Applications/pgAdmin 4.app/Contents/SharedSupport/psql" --host "localhost" --port "5432" --username "demo" --dbname "postgres" --echo-errors  --file ./northwind.sql

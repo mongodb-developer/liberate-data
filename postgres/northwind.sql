@@ -21,10 +21,9 @@ SET row_security = off;
 -- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'C';
-
-
 ALTER DATABASE postgres OWNER TO postgres;
+
+CREATE USER "demo";
 
 \connect postgres
 

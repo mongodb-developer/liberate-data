@@ -4,12 +4,26 @@ Reduce the time it takes to modernize your applications by freeing the data trap
 
 ![Demo Architecture](./img/demo-components.jpg)
 
-Steps
-#### PostgreSQL
-1. Restore the `northwind` PostgreSQL database using the `restore.sh` script into your postgres host of choice. The instructions assume localhost running on the default port of 5432 with a user named "demo".
-2. Verify that the following tables with all data are correctly imported by running this script:
+## Prerequisites
+* Docker Desktop 4+
 
-```
+
+## Steps
+### Clone & Change Directory
+1. ```shell
+   git clone https://github.com/mongodb-developer/liberate-data.git && cd liberate-data
+   ```
+
+### PostgreSQL
+1. Build the image: 
+   `docker build -t liberate-data-postgres .`
+2. Run the container:
+   `docker run -d --name my-postgres -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres`
+3. Exec into the container:
+   `docker exec -it my-postgres psql -U postgres`
+4. Verify that the following tables with all data were correctly initialized during container startup by running this script:
+
+```postgresql
 WITH tbl AS
   (SELECT table_schema,
           TABLE_NAME
@@ -21,26 +35,32 @@ SELECT table_schema,
        (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
 FROM tbl
 ORDER BY rows_n DESC;
-
-output
------------------------------------------
-"table_schema","table_name","rows_n"
-"northwind","order_details",2155
-"northwind","orders",830
-"northwind","customers",91
-"northwind","products",77
-"northwind","territories",53
-"northwind","us_states",51
-"northwind","employee_territories",49
-"northwind","suppliers",29
-"northwind","employees",9
-"northwind","categories",8
-"northwind","shippers",6
-"northwind","region",4
-"northwind","customer_customer_demo",0
-"northwind","customer_demographics",0
 ```
 
+output...
+
+```shell
+
+------------------------------------------------
+ table_schema |       table_name       | rows_n 
+--------------+------------------------+--------
+ northwind    | order_details          |   2155
+ northwind    | orders                 |    830
+ northwind    | customers              |     91
+ northwind    | products               |     77
+ northwind    | territories            |     53
+ northwind    | us_states              |     51
+ northwind    | employee_territories   |     49
+ northwind    | suppliers              |     29
+ northwind    | employees              |      9
+ northwind    | categories             |      8
+ northwind    | shippers               |      6
+ northwind    | region                 |      4
+ northwind    | customer_customer_demo |      0
+ northwind    | customer_demographics  |      0
+
+```
+5. Exit postgres container: `\q`
 
 #### MongoDB Atlas
 2. [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
@@ -50,9 +70,10 @@ output
 5. Install [MongoDB Relational Migrator](https://www.mongodb.com/products/relational-migrator).
 6. Import the project [liberate-data.relmig](./relational-migrator/liberate-data.relmig).
 7. Inspect the Relational and MDB diagrams. Notice how the `Orders` collection uses the [Subset](https://www.mongodb.com/blog/post/building-with-patterns-the-subset-pattern) schema design pattern to store most frequently accessed data together.
-8. The destination Orders collection shoud look like this:
+8. The destination Orders collection should look like this:
 ![Orders collection mapping](./img/orders_mappings.jpg)
-9. Perform the data migration by entering your Postgres and Atlas credentials. 
+9. Perform the data migration by entering your Postgres and Atlas credentials.
+   10. Postgres Credentials: Username = `postgres` / Password = `password`
 10. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 #### MongoDB Atlas Search
 11. Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
