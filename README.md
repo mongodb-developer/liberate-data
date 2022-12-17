@@ -26,9 +26,11 @@ Reduce the time it takes to modernize your applications by freeing the data trap
          --name my-postgres \
          liberate-data-postgres postgres -c config_file=/etc/postgresql.conf
 ```
-3. Exec into the container:
+
+2. Exec into the container:
    `docker exec -it my-postgres psql -U postgres`
-4. Verify that the following tables with all data were correctly initialized during container startup by running this script:
+   
+3. Verify that the following tables with all data were correctly initialized during container startup by running this script:
 
 ```postgresql
 WITH tbl AS
