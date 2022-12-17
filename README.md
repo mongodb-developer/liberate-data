@@ -14,39 +14,30 @@ Reduce the time it takes to modernize your applications by freeing the data trap
    git clone https://github.com/mongodb-developer/liberate-data.git && cd liberate-data
    ```
 
-### PostgreSQL
-1. Build and run: 
+### Create a PostgreSQL instance in Docker
+1. Build the image: 
+   `docker build -t liberate-data-postgres .`
+2. Launch a docker container for the Postgres instance by:
+   `docker run -d --name my-postgres -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres -c wal_level=logical`
+3. Validate the Northwind schema by running this command:
+
    ```shell
-         docker build -t liberate-data-postgres . && \
-         docker run -d \
-         -v "$PWD/postgres/postgresql.conf":/etc/postgresql.conf \
-         -e POSTGRES_USER=postgres \
-         -e POSTGRES_PASSWORD=password \
-         -p 5432:5432 \
-         --name my-postgres \
-         liberate-data-postgres postgres -c config_file=/etc/postgresql.conf
-   ```
-
-2. Exec into the container:
-   `docker exec -it my-postgres psql -U postgres`
-   
-3. Verify that the following tables with all data were correctly initialized during container startup by running this script:
-
-```postgresql
-WITH tbl AS
-  (SELECT table_schema,
-          TABLE_NAME
+   docker exec -i my-postgres psql -U postgres <<EOF
+   WITH tbl AS
+   (SELECT table_schema, TABLE_NAME
    FROM information_schema.tables
    WHERE TABLE_NAME not like 'pg_%'
-     AND table_schema in ('northwind'))
-SELECT table_schema,
-       TABLE_NAME,
-       (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
-FROM tbl
-ORDER BY rows_n DESC;
-```
+   AND table_schema in ('northwind'))
+   SELECT table_schema, TABLE_NAME,
+   (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
+   FROM tbl
+   ORDER BY rows_n DESC;
+   \q
+   EOF
 
-output...
+   ```
+
+The output should look like this...
 
 ```shell
 
