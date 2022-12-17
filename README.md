@@ -25,7 +25,7 @@ Reduce the time it takes to modernize your applications by freeing the data trap
          -p 5432:5432 \
          --name my-postgres \
          liberate-data-postgres postgres -c config_file=/etc/postgresql.conf
-```
+   ```
 
 2. Exec into the container:
    `docker exec -it my-postgres psql -U postgres`
