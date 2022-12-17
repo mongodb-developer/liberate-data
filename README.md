@@ -15,10 +15,17 @@ Reduce the time it takes to modernize your applications by freeing the data trap
    ```
 
 ### PostgreSQL
-1. Build the image: 
-   `docker build -t liberate-data-postgres .`
-2. Run the container:
-   `docker run -d --name my-postgres -v "$PWD/postgres/custom-postgres.conf":/etc/postgresql/postgresql.conf -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres`
+1. Build and run: 
+   ```shell
+         docker build -t liberate-data-postgres . && \
+         docker run -d \
+         -v "$PWD/postgres/postgresql.conf":/etc/postgresql.conf \
+         -e POSTGRES_USER=postgres \
+         -e POSTGRES_PASSWORD=password \
+         -p 5432:5432 \
+         --name my-postgres \
+         liberate-data-postgres postgres -c config_file=/etc/postgresql.conf
+```
 3. Exec into the container:
    `docker exec -it my-postgres psql -U postgres`
 4. Verify that the following tables with all data were correctly initialized during container startup by running this script:

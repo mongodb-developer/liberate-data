@@ -25,7 +25,7 @@ ALTER DATABASE postgres OWNER TO postgres;
 
 CREATE USER "demo";
 
-\connect postgres
+\connect postgres;
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;

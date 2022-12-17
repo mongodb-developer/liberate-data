@@ -1,3 +1,2 @@
-FROM postgres:14
-#COPY /postgres/postgresql.conf /var/lib/postgresql/data/postgresql.conf
+FROM postgres:15
 COPY /postgres/northwind.sql /docker-entrypoint-initdb.d
