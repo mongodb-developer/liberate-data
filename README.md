@@ -14,30 +14,30 @@ Reduce the time it takes to modernize your applications by freeing the data trap
    git clone https://github.com/mongodb-developer/liberate-data.git && cd liberate-data
    ```
 
-### PostgreSQL
+### Create a PostgreSQL instance in Docker
 1. Build the image: 
    `docker build -t liberate-data-postgres .`
-2. Run the container:
-   `docker run -d --name my-postgres -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres`
-3. Exec into the container:
-   `docker exec -it my-postgres psql -U postgres`
-4. Verify that the following tables with all data were correctly initialized during container startup by running this script:
+2. Launch a docker container for the Postgres instance by:
+   `docker run -d --name my-postgres -p "5432:5432" -e POSTGRES_PASSWORD=password --rm liberate-data-postgres -c wal_level=logical`
+3. Validate the Northwind schema by running this command:
 
-```postgresql
-WITH tbl AS
-  (SELECT table_schema,
-          TABLE_NAME
+   ```shell
+   docker exec -i my-postgres psql -U postgres <<EOF
+   WITH tbl AS
+   (SELECT table_schema, TABLE_NAME
    FROM information_schema.tables
    WHERE TABLE_NAME not like 'pg_%'
-     AND table_schema in ('northwind'))
-SELECT table_schema,
-       TABLE_NAME,
-       (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
-FROM tbl
-ORDER BY rows_n DESC;
-```
+   AND table_schema in ('northwind'))
+   SELECT table_schema, TABLE_NAME,
+   (xpath('/row/c/text()', query_to_xml(format('select count(*) as c from %I.%I', table_schema, TABLE_NAME), FALSE, TRUE, '')))[1]::text::int AS rows_n
+   FROM tbl
+   ORDER BY rows_n DESC;
+   \q
+   EOF
 
-output...
+   ```
+
+The output should look like this...
 
 ```shell
 
@@ -60,7 +60,6 @@ output...
  northwind    | customer_demographics  |      0
 
 ```
-5. Exit postgres container: `\q`
 
 #### MongoDB Atlas
 2. [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
