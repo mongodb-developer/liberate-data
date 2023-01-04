@@ -67,7 +67,8 @@ The output should look like this...
 
 #### MongoDB Atlas
 * [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
-   3. NOTE: The cluster *must* be named `production`. Otherwise, the `realm-cli push...` command later on will fail
+* * NOTE: This demo depends on a cluster greater than or equal to an M10 and must be MongoDB 6.0+
+* * NOTE: The cluster *must* be named `production`. Otherwise, the `realm-cli push...` command later on will fail
 * Create a user named `demo` with `readWriteAnyDatabase` permissions.
 * Add `0.0.0.0` to your Atlas IP Access List. NOTE: This is not recommneded for production or professional work environments.
 #### MongoDB Relational Migrator
