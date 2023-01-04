@@ -83,7 +83,7 @@ The output should look like this...
 * Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
 
 #### MongoDB Atlas App Services
-Import the Atlas Application [production-app](./app-services/) into the Atlas project.
+In this section, you will deploy the Atlas Application [production-app](./app-services/) from your local machine to Atlas. [production-app](./app-services/) contains all the preconfigured <b>Linked Data Sources</b>, <b>Rules</b>, <b>Schema</b>, <b>Device Sync</b>, <b>GraphQL</b>, <b>Functions</b> and <b>Custom Resolvers</b> you will need to complete this demo.
 
 * Download and install the realm-cli
 
