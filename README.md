@@ -63,6 +63,7 @@ The output should look like this...
 
 #### MongoDB Atlas
 2. [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup) and create an Atlas Project named `Liberate Data` with an Atlas cluster named `production`.
+   3. NOTE: The cluster *must* be named `production`. Otherwise, the `realm-cli push...` command later on will fail
 3. Create a user named `demo` with `readWriteAnyDatabase` permissions.
 4. Add `0.0.0.0` to your Atlas IP Access List. NOTE: This is not recommneded for production or professional work environments.
 #### MongoDB Relational Migrator
@@ -78,6 +79,29 @@ The output should look like this...
 11. Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
 #### MongoDB Atlas App Services
 12. Import the Atlas Application [production-app](./app-services/) into the Atlas project.
+    13. Download and install the realm-cli
+        14. `npm install -g mongodb-realm-cli`
+    15. Create an API Key
+        16. https://cloud.mongodb.com/v2/PROJECT_ID#/access/apiKeys/create (replace PROJECT_ID with your project id)
+        17. Give the key a description and set the project permissions to `Project Owner`
+            18. ![Create API Key](./img/create-api-key.png)
+        19. Store the public and private keys temp variables
+            20. `export PUBLIC_KEY=<Public key copied from Atlas> && export PRIVATE_KEY=<Private key copied from Atlas>`
+        21. Authenticate to the realm-cli
+            22. `realm-cli login --api-key $PUBLIC_KEY --private-api-key $PRIVATE_KEY`
+                23. If prompted with `This action will terminate blah blah blah`, just proceed with `y`
+                24. When you see `Successfully logged in`, chances are you're successfully logged in.
+    25. Deploy the production-app
+        26. `realm-cli push --local app-services/production-app` (execute from the root of this project)
+            27. NOTE: If your cluster is not named `production` this command will fail. You'll either have to create a new cluster named `production`, or update the `config.clusterName` in the [config.json](./app-services/production-app/data_sources/mongodb-atlas/config.json)
+        28. Accept all the default prompts. The following message indicates success
+            ```shell
+            Creating draft
+            Pushing changes
+            Deploying draft
+            Deployment complete
+            Successfully pushed app up: production
+            ```
 13. <b>Linked Data Sources</b>: Inspect that the `production` cluster is linked as the data source.
 14. <b>Rules</b>: The `orders` collection should have the `readAndWriteAll` role. All other collections should have the `readAll` role. 
 15. <b>Schema</b>: Ensure the schema for all collections is defined. The schema for the `orders` collection should define required fields as below in addition to their bson types:
