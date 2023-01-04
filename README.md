@@ -77,14 +77,19 @@ The output should look like this...
 10. When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 #### MongoDB Atlas Search
 11. Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
+
 #### MongoDB Atlas App Services
-12. Import the Atlas Application [production-app](./app-services/) into the Atlas project.
-    13. Download and install the realm-cli
-        14. `npm install -g mongodb-realm-cli`
-    15. Create an API Key
-        16. https://cloud.mongodb.com/v2/PROJECT_ID#/access/apiKeys/create (replace PROJECT_ID with your project id)
-        17. Give the key a description and set the project permissions to `Project Owner`
-            18. ![Create API Key](./img/create-api-key.png)
+Import the Atlas Application [production-app](./app-services/) into the Atlas project.
+
+* Download and install the realm-cli
+
+    ```shell
+    npm install -g mongodb-realm-cli
+    ```
+* Create an API Key
+Navigate to https://cloud.mongodb.com/v2/PROJECT_ID#/access/apiKeys/create (replace PROJECT_ID with your project id)
+* Give the key a description and set the project permissions to `Project Owner`
+![Create API Key](./img/create-api-key.png)
         19. Store the public and private keys temp variables
             20. `export PUBLIC_KEY=<Public key copied from Atlas> && export PRIVATE_KEY=<Private key copied from Atlas>`
         21. Authenticate to the realm-cli
