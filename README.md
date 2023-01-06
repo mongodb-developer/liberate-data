@@ -82,7 +82,12 @@ The output should look like this...
 * When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 
 #### MongoDB Atlas Search
-* Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
+* Create a default search index with dynamic mappings on the `orders` 
+![orders index](./img/orders-index.gif)
+* Create a default search index with dynamic mappings on the `categories` collections.
+![categories index](./img/categories-index.gif)
+* See [search-indexes.json](./atlas/search-indexes.json) for index definitions.
+
 
 #### MongoDB Data Services
 * Create an API Key Pair. This public/private key pair will be used to authenticate the realm-cli and deploy the [production-app](./app-services/) in the next section.
