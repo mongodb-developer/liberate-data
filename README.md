@@ -80,8 +80,24 @@ The output should look like this...
 * Perform the data migration by entering your Postgres and Atlas credentials. 
   * Postgres Credentials: Username = `postgres` / Password = `password`
 * When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
+
 #### MongoDB Atlas Search
-* Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
+* Create a default search index with dynamic mappings on the `orders` collection.
+![orders index](./img/orders-index.gif)
+* Create a default search index with dynamic mappings on the `categories` collection.
+![categories index](./img/categories-index.gif)
+* See [search-indexes.json](./atlas/search-indexes.json) for index definitions.
+
+
+#### MongoDB Data Services
+* Create an API Key Pair. This public/private key pair will be used to authenticate the realm-cli and deploy the [production-app](./app-services/) in the next section.
+![Create Key Pair](./img/create-keypair.gif)
+* Save Key Pair to Terminal variables
+```shell
+export PUB_KEY=<REPLACEME>
+export PRIV_KEY=<REPLACEME>
+```
+![Save Vars](./img/save-vars.gif)
 
 #### MongoDB Atlas App Services
 In this section, you will deploy the Atlas Application [production-app](./app-services/) from your local machine to Atlas. [production-app](./app-services/) contains all the preconfigured <b>Linked Data Sources</b>, <b>Rules</b>, <b>Schema</b>, <b>Device Sync</b>, <b>GraphQL</b>, <b>Functions</b> and <b>Custom Resolvers</b> you will need to complete this demo.
@@ -91,17 +107,9 @@ In this section, you will deploy the Atlas Application [production-app](./app-se
     ```shell
     npm install -g mongodb-realm-cli
     ```
-* Create an API Key 
-  * Navigate to https://cloud.mongodb.com/v2/PROJECT_ID#/access/apiKeys/create (replace PROJECT_ID with your project id)
-* Give the key a description and set the project permissions to `Project Owner`
-    ![Create API Key](./img/create-api-key.png)
-* Store the public and private keys temp variables
-    ```shell
-    export PUBLIC_KEY=<Public key copied from Atlas> && export PRIVATE_KEY=<Private key copied from Atlas>
-    ```
 * Authenticate to the realm-cli
     ```shell
-    realm-cli login --api-key $PUBLIC_KEY --private-api-key $PRIVATE_KEY
+    realm-cli login --api-key $PUB_KEY --private-api-key $PRIV_KEY
     ```            
 * If prompted with `This action will terminate blah blah blah`, just proceed with `y`
 * When you see `Successfully logged in`, chances are you're successfully logged in.
@@ -117,6 +125,10 @@ In this section, you will deploy the Atlas Application [production-app](./app-se
     Deployment complete
     Successfully pushed app up: production
     ```
+* Create the App Services API Key
+![App services key](./img/app-svc-key.gif)
+
+#### Validate App Service Deployment
 * <b>Linked Data Sources</b>: Inspect that the `production` cluster is linked as the data source.
 * <b>Rules</b>: The `orders` collection should have the `readAndWriteAll` role. All other collections should have the `readAll` role. 
 * <b>Schema</b>: Ensure the schema for all collections is defined. The schema for the `orders` collection should define required fields as below in addition to their bson types:
@@ -141,8 +153,7 @@ In this section, you will deploy the Atlas Application [production-app](./app-se
   ...
 }
 ```
-* <b>Authentication</b>: Two authentication providers should be enabled: `email/password` and `API Keys`. An API key named `demo` should be (re)created by you.
-* * NOTE: You need to create a _new_ API key in <b>App Services</b>. As opposed to the one you created eailer in <b>Data Services</b>
+* <b>Authentication</b>: Two authentication providers should be enabled: `email/password` and `API Keys`. The API key named `demo` was created by you.
 * <b>Device Sync</b>: Flexible device sync should be enabled, set to the linked atlas cluster and the northwind database.
 * <b>GraphQL</b>: All entity types should be defined along with a custom resolver named `searchOrders`, which itself is linked to an Atlas Function named `funcSearchOrders`.
 
