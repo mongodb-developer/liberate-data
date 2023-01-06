@@ -25,7 +25,7 @@ ALTER DATABASE postgres OWNER TO postgres;
 
 CREATE USER "demo";
 
-\connect postgres
+\connect postgres;
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -4184,3 +4184,18 @@ GRANT SELECT ON TABLE northwind.us_states TO demo;
 -- PostgreSQL database dump complete
 --
 
+GRANT USAGE ON SCHEMA northwind TO postgres;
+GRANT SELECT ON TABLE northwind.customer_customer_demo to postgres;
+GRANT SELECT ON TABLE northwind.region to postgres;
+GRANT SELECT ON TABLE northwind.customer_demographics to postgres;
+GRANT SELECT ON TABLE northwind.order_details to postgres;
+GRANT SELECT ON TABLE northwind.territories to postgres;
+GRANT SELECT ON TABLE northwind.categories to postgres;
+GRANT SELECT ON TABLE northwind.employees to postgres;
+GRANT SELECT ON TABLE northwind.shippers to postgres;
+GRANT SELECT ON TABLE northwind.us_states to postgres;
+GRANT SELECT ON TABLE northwind.products to postgres;
+GRANT SELECT ON TABLE northwind.employee_territories to postgres;
+GRANT SELECT ON TABLE northwind.customers to postgres;
+GRANT SELECT ON TABLE northwind.orders to postgres;
+GRANT SELECT ON TABLE northwind.suppliers to postgres;
