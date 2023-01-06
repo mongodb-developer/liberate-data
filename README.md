@@ -82,9 +82,9 @@ The output should look like this...
 * When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
 
 #### MongoDB Atlas Search
-* Create a default search index with dynamic mappings on the `orders` 
+* Create a default search index with dynamic mappings on the `orders` collection.
 ![orders index](./img/orders-index.gif)
-* Create a default search index with dynamic mappings on the `categories` collections.
+* Create a default search index with dynamic mappings on the `categories` collection.
 ![categories index](./img/categories-index.gif)
 * See [search-indexes.json](./atlas/search-indexes.json) for index definitions.
 
