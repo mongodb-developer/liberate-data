@@ -153,7 +153,7 @@ In this section, you will deploy the Atlas Application [production-app](./app-se
   ...
 }
 ```
-* <b>Authentication</b>: Two authentication providers should be enabled: `email/password` and `API Keys`. An API key named `demo` should be (re)created by you.
+* <b>Authentication</b>: Two authentication providers should be enabled: `email/password` and `API Keys`. The API key named `demo` was created by you.
 * <b>Device Sync</b>: Flexible device sync should be enabled, set to the linked atlas cluster and the northwind database.
 * <b>GraphQL</b>: All entity types should be defined along with a custom resolver named `searchOrders`, which itself is linked to an Atlas Function named `funcSearchOrders`.
 
