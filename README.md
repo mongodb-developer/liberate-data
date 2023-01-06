@@ -80,11 +80,19 @@ The output should look like this...
 * Perform the data migration by entering your Postgres and Atlas credentials. 
   * Postgres Credentials: Username = `postgres` / Password = `password`
 * When done, navigate to Atlas and ensure all collections were migrated. Inspect the `orders` collection. A subset of the data from orderDetails, product, customer & employee should be nested.
+
 #### MongoDB Atlas Search
 * Create a default search index with dynamic mappings on the `orders` and `categories` collections. See [search-indexes.json](./atlas/search-indexes.json) for their definition.
 
+#### MongoDB Data Services
+* Create an API Key Par. This public/private key pair will be used to authenticate the realm-cli and deploy the [production-app](./app-services/) in the next section.
+TODO: add gif for creating pub/priv keys
+TODO: add gif for saving keys to terminal variable
+
 #### MongoDB Atlas App Services
 In this section, you will deploy the Atlas Application [production-app](./app-services/) from your local machine to Atlas. [production-app](./app-services/) contains all the preconfigured <b>Linked Data Sources</b>, <b>Rules</b>, <b>Schema</b>, <b>Device Sync</b>, <b>GraphQL</b>, <b>Functions</b> and <b>Custom Resolvers</b> you will need to complete this demo.
+
+
 
 * Download and install the realm-cli
 
