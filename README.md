@@ -97,8 +97,8 @@ In this segment, the PostgreSQL DB will be migrated to the MongoDB cluster.
 
 * Start the Mongodb Relational Migrator app - or click to reconnect [Migrator](http://127.0.0.1:8278/)
 * Click `Import project file` and select the project file: `./relational-migrator/liberate-data.relmig`
-* Inspect the Relational and MDB diagrams. Notice how the `Orders` collection uses the [Subset](https://www.mongodb.com/blog/post/building-with-patterns-the-subset-pattern) schema design pattern to store most frequently accessed data together.
-* The destination Orders collection should look like this:
+* Inspect the Relational and MDB diagrams. Notice how the `orders` collection uses the [Extended Reference](https://www.mongodb.com/blog/post/building-with-patterns-the-extended-reference-pattern) schema design pattern to store most frequently accessed data together.
+* The destination `orders` collection should look like this:
   * ![Orders collection mapping](./img/orders_mappings.jpg)
 * Perform the database migration
   - Start a Data Migration Job by clicking on the other top tab along side Mapping
@@ -111,8 +111,7 @@ In this segment, the PostgreSQL DB will be migrated to the MongoDB cluster.
   - Click Start
 * When this job is complete, validate the outcome in the MongoDB cluster
   - In the Atlas UI, ensure all the collections were migrated.
-  - Inspect the `orders` collection.
-  - A subset of the data from orderDetails, product, customer & employee should be nested.
+  - Inspect the `orders` collection. The most frequently accessed data from `orderDetails`, `product`, `customer` & `employee` should be nested.
 
 ### Enable MongoDB Atlas Search
 These steps build Search indexes on the `orders` and `categories` collection enable one to run queries via Atlas Search.
