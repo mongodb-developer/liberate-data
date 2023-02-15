@@ -127,6 +127,8 @@ These steps build Search indexes on the `orders` and `categories` collection ena
 Now we careate a public/private key pair that will be used to authenticate the realm-cli.
 
 * Create an API Key Pair. Save these values for deployment in the [production-app](./app-services/) in the next section.
+* Description: `Liberate Data`
+* Project Permissions: `Project Owner`
   ![Create Key Pair](./img/create-keypair.gif)
 * Save Key Pair to Terminal variables
 ```
