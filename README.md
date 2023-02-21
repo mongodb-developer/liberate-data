@@ -6,6 +6,9 @@ Power it with advanced lucene-based search, enable consumption via a fully-manag
 
 ![Demo Architecture](./img/demo-components.jpg)
 
+Watch a walkthrough of this demo here 
+[![walkthrough](https://img.youtube.com/vi/OZZJ5RJKtCU/default.jpg)](https://www.youtube.com/watch?v=OZZJ5RJKtCU)
+
 ## Prerequisites - Tool Installations
 Let's get all the tools ready now.
 
@@ -14,7 +17,7 @@ Let's get all the tools ready now.
 * A source DB environment - PostGreSQL
   - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * The new MongoDB Relational Migrator - see [Info](https://www.mongodb.com/products/relational-migrator) for details.
-  - Install a [Migrator Release](https://github.com/mongodb-ets/migrator/releases)
+  - Install a [Migrator Release](https://www.mongodb.com/products/relational-migrator)
 * A tool to generate API calls - Postman
   - Install [Postman](https://www.postman.com/downloads/)
 * A mobile application coding environment - Xcode with Swift
