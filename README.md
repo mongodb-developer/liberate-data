@@ -1,16 +1,15 @@
-# Liberate your data: From RDBMS to Search, GraphQL & Mobile ... in minutes!
+# Liberate your data: From RDBMS to Vector Search, GraphQL & Mobile ... in minutes!
 
 Reduce the time it takes to modernize your applications by freeing the data trapped in your relational database and migrating to the next-gen fully transactional DB of MongoDB Atlas.
 
-Power it with advanced lucene-based search, enable consumption via a fully-managed GraphQL API, and expose data to mobile and edge consumers via the Realm mobile DB and SDKs.
+Power it with advanced vector and textual search, enable consumption via a fully-managed GraphQL API, and expose data to mobile and edge consumers via the Realm mobile DB and SDKs.
 
 ![Demo Architecture](./img/demo-components.jpg)
 
 Watch a walkthrough of this demo here 
 [![walkthrough](https://img.youtube.com/vi/OZZJ5RJKtCU/default.jpg)](https://www.youtube.com/watch?v=OZZJ5RJKtCU)
 
-## Prerequisites - Tool Installations
-Let's get all the tools ready now.
+## Prerequisites
 
 * A target DB environment - MongoDB Atlas Cluster
   - [Sign up for Atlas](https://www.mongodb.com/cloud/atlas/signup)
@@ -18,8 +17,11 @@ Let's get all the tools ready now.
   - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * The new MongoDB Relational Migrator - see [Info](https://www.mongodb.com/products/relational-migrator) for details.
   - Install a [Migrator Release](https://www.mongodb.com/products/relational-migrator)
+* An OpenAI Account with an API Key generated
+  - Consult the [OpenAI API reference](https://platform.openai.com/docs/api-reference)  
 * A tool to generate API calls - Postman
   - Install [Postman](https://www.postman.com/downloads/)
+* Upfront setup of the [Production Atlas App](./app-services/production-app/) is required as this contains triggers to automatically embed data as it is being migrated into the Atlas cluster.   
 * A mobile application coding environment - Xcode with Swift
   - Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12#:~:text=View%20in-,Mac,-App%20Store) using App Store - see here for details on the how to download the SDK [Swift](https://developer.apple.com/swift/)
 * Download and install the realm-cli by running:
@@ -174,6 +176,7 @@ Now finalize the application setup by creating an application API key which will
 * Click on the `EDIT` button for the API Keys row and `Click create API Key` - capturing this value too.
 * Now click on GraphQL from the left panel and capture GraphQL Endpoint value.
   ![App services key](./img/app-svc-key.gif)
+* Add your OpenAI API Key in the `openAI_secret` in the `Values` section  
 
 #### Validate the App Service Deployment
 Walk through the following steps to show that the app service is configured properly.
@@ -204,7 +207,7 @@ Walk through the following steps to show that the app service is configured prop
 ```
 * <b>Authentication</b>: Two authentication providers should be enabled: `email/password` and `API Keys`. The API key named `demo` was created by you.
 * <b>Device Sync</b>: Flexible device sync should be enabled, set to the linked atlas cluster and the northwind database.
-* <b>GraphQL</b>: All entity types should be defined along with a custom resolver named `searchOrders`, which itself is linked to an Atlas Function named `funcSearchOrders`.
+* <b>GraphQL</b>: All entity types should be defined along with two custom resolvers named `searchOrders` and `vectorSearchOrders` which are linked to the Atlas Functions named `funcSearchOrders` and `funcVectorSearchOrders` respectively.
 
 ### Use Postman for API testing
 This step will allow one to run queries via GraphQL. This will show that the API is working as expected.
@@ -222,6 +225,8 @@ This step will allow one to run queries via GraphQL. This will show that the API
 * If successful, copy/save the value of the output `access_token` - without the quotes - to be used in the other queries.
 
 * Now, execute any of the other operations after inserting the `access_token` value in the **Authorization** tab. Feel free to change query values.
+
+* The `Vector Search: Semantic search on Orders` operation uses a custom resolver which in turn executes an Atlas Vector Search pipeline. This pipeline is implemented in the `funcVectorSearchOrders` function and performs a real-time embedding of the search string against OpenAI and performs a vector search.
 
 * The `Search: Orders by search string` operation uses a custom resolver which in turn executes an Atlas Search pipeline. This pipeline is implemented in the `funcSearchOrders` function and performs a fuzzy text search on the `orders` collection, plus a union (`$unionWith`) and join (`$lookup`) to the `categories` collection, thus performing a text search on orders and categories.
 
