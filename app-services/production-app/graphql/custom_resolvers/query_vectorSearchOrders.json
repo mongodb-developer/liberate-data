@@ -1,0 +1,9 @@
+{
+    "field_name": "vectorSearchOrders",
+    "function_name": "funcVectorSearchOrders",
+    "input_type": "string",
+    "input_type_format": "scalar",
+    "on_type": "Query",
+    "payload_type": "Order",
+    "payload_type_format": "generated-list"
+}
