@@ -6,5 +6,27 @@
     {
         "name": "funcSearchOrders",
         "private": false
+    },
+    {
+        "name": "funcVectorizeStrings",
+        "private": true
+    },
+    {
+        "name": "funcVectorizeWithOpenAI",
+        "private": true
+    },
+    {
+        "name": "funcEmbedNorthwindOrders",
+        "private": true
+    },
+    {
+        "name": "funcDescribeSalesOrderViaChatGPT35Turbo",
+        "private": false,
+        "disable_arg_logs": true
+    },
+    {
+        "name": "funcVectorSearchOrders",
+        "private": false,
+        "run_as_system": true
     }
 ]
