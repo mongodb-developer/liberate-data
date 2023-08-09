@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "65df41d5-d1bb-4692-9008-e54da7ef0c36",
+		"_postman_id": "",
 		"name": "Liberate data!",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "1711440"
@@ -204,7 +204,44 @@
 				"body": {
 					"mode": "graphql",
 					"graphql": {
-						"query": "query {\n  searchOrders(input:\"clm chwdr\") {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        productId\n        quantity\n        unitPrice\n        product {\n            categoryId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"query": "query {\n  searchOrders(input:\"nwl clm chwdr\") {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        productId\n        quantity\n        unitPrice\n        product {\n            categoryId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{graphql_api}}",
+					"host": [
+						"{{graphql_api}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vector Search: Semantic search on Orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  vectorSearchOrders(input:\"Customers who ordered seafood and beer with a discount of 10 percent or more\") {\n    _id\n    freight\n    orderDate\n    requiredDate\n    shipAddress\n    shipCity\n    shipCountry\n    shipName\n    shipPostalCode\n    shipRegion\n    shipVia\n    shippedDate\n    customer {\n        companyName\n        contactName\n        contactTitle\n    }\n    employee {\n        firstName\n        lastName\n    }    \n    orderDetails {\n        discount\n        productId\n        quantity\n        unitPrice\n        product {\n            categoryId\n            productName\n            quantityPerUnit\n      }\n    }\n  }\n}",
 						"variables": ""
 					}
 				},
